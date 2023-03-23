@@ -1,1 +1,16 @@
-<router-outlet></router-outlet>
+<div>
+    <nav class="nav">
+        <div class="title">
+          NestedFlights
+        </div>
+        <ul>
+          <a routerLink="/home" [routerLinkActive]="'active'" [routerLinkActiveOptions]="{exact: true}">
+            <li>Home</li>
+          </a>
+          <a routerLink="/admin" [routerLinkActive]="'active'">
+            <li>Admin</li>
+          </a>
+        </ul>
+      </nav>
+      <router-outlet></router-outlet>
+</div>

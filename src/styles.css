@@ -2,3 +2,45 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+    .active {
+        @apply bg-[#20f547] rounded-md hover:bg-[#25963a] hover:effect;
+    }
+
+    .nav {
+        @apply flex flex-row justify-between bg-green-800 text-white h-16 items-center px-5 shadow-3xl;
+    }
+
+    ul {
+        @apply flex flex-row text-center w-1/2 justify-end space-x-7;
+    }
+
+    a {
+        @apply px-5 py-2.5 bg-black rounded-md hover:bg-white hover:text-black hover:effect;
+    }
+
+    .effect {
+        @apply transition-all ease-in-out duration-300 delay-75;
+    }
+
+    .flight {
+        @apply flex flex-row bg-[#a7b7d6] shadow-3xl p-7 justify-between mx-7 my-12 hover:-translate-y-[5px] hover:effect rounded-md items-center;
+    }
+
+    .nonstop {
+        @apply text-white bg-blue-500 px-5 py-2.5 rounded-md;
+    }
+
+    .no-nonstop {
+        @apply text-white bg-green-500 px-5 py-2.5 rounded-md;
+    }
+
+    body {
+        @apply bg-[url('./assets/flight.jpg')] bg-no-repeat bg-cover bg-center bg-fixed;
+    }
+
+    .title {
+        @apply font-bold text-3xl;
+    }
+}

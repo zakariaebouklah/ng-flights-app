@@ -1,1 +1,22 @@
-<p class="text-green-500 text-lg font-bold">home works!</p>
+<div>
+    <div *ngFor="let f of flights" class="flight">
+        <div>
+            #{{f.flightNumber}}
+        </div>
+        <div class="font-bold">
+            {{f.origin}}
+        </div>
+        <div class="font-bold">
+            {{f.destination}}
+        </div>
+        <div>
+            {{f.departure | date:'full'}}
+        </div>
+        <div>
+            {{f.arrival | date:'full'}}
+        </div>
+        <div [ngClass]="{'nonstop' : f.nonstop, 'no-nonstop': f.nonstop === false}">
+            {{f.nonstop ? 'Nonstop' : 'Direct'}}
+        </div>
+    </div>
+</div>
