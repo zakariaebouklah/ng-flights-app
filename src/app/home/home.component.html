@@ -1,4 +1,26 @@
 <div>
+    <form class="search" (ngSubmit)="searchByOrgingAndDestination()">
+        <div class="input">
+            <input autocomplete="off" required="true" type="text" name="org" [(ngModel)]="origin">
+            <label for="name">Origin</label>
+        </div>
+        <div class="input">
+            <input autocomplete="off" required="true" type="text" name="dest" [(ngModel)]="destination">
+            <label for="name">Destination</label>
+        </div>
+        <button class="shadow__btn" type="submit">
+            Go
+        </button>
+    </form>
+</div>
+
+<div *ngIf="!isClicked" >
+    <div class="flex flex-row justify-center mt-20">
+        <button (click)="getFlights()" class="bg-white hover:effect hover:bg-[#a7b7d6] p-3.5 rounded-md">Display Available Flights</button>
+    </div>
+</div>
+
+<div>
     <div *ngFor="let f of flights" class="flight">
         <div>
             #{{f.flightNumber}}

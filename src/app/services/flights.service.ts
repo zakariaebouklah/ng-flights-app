@@ -34,6 +34,13 @@ export class FlightsService {
     return this.httpClient.get('http://localhost:3000/flights/');
   }
 
+  getFlightByOrgAndDest(org: string, dest: string): Observable<any>
+  {
+    console.log("here");
+    
+    return this.httpClient.get(`http://localhost:3000/flights/query/${org}/${dest}`)
+  }
+
   newFlight(flight: Flight): void
   {
 

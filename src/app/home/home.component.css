@@ -1,0 +1,66 @@
+.shadow__btn {
+    padding: 10px 20px;
+    border: none;
+    font-size: 17px;
+    color: #fff;
+    border-radius: 7px;
+    letter-spacing: 4px;
+    font-weight: 700;
+    text-transform: uppercase;
+    transition: 0.5s;
+    transition-property: box-shadow;
+    width: 150px;
+  }
+  
+  .shadow__btn {
+    background: rgb(0,140,255);
+    /* box-shadow: 0 0 25px rgb(0,140,255); */
+  }
+  
+  .shadow__btn:hover {
+    box-shadow: 0 0 5px rgb(0,140,255),
+                0 0 25px rgb(0,140,255)
+                /* 0 0 50px rgb(0,140,255), */
+                /* 0 0 100px rgb(0,140,255); */
+  }
+
+  .input {
+    font-family: 'Segoe UI', sans-serif;
+    margin: 1em 0 1em 0;
+    max-width: 190px;
+    position: relative;
+  }
+  
+  .input input {
+    font-size: 100%;
+    padding: 0.8em;
+    outline: none;
+    border: 2px solid rgb(18, 230, 50);
+    background-color: transparent;
+    border-radius: 20px;
+    width: 100%;
+  }
+  
+  .input label {
+    font-size: 100%;
+    position: absolute;
+    left: 0;
+    padding: 0.8em;
+    margin-left: 0.5em;
+    pointer-events: none;
+    transition: all 0.3s ease;
+    color: white;
+  }
+  
+  .input :is(input:focus, input:valid)~label {
+    transform: translateY(-50%) scale(.9);
+    margin: 0em;
+    margin-left: 1.3em;
+    padding: 0.4em;
+    background-color: gray;
+    border-radius: 5px;
+  }
+  
+  .inputGroup :is(input:focus, input:valid) {
+    border-color: rgb(18, 230, 50);
+  }

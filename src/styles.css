@@ -43,4 +43,8 @@
     .title {
         @apply font-bold text-3xl;
     }
+
+    .search {
+        @apply flex flex-row items-center justify-center  justify-around;
+    }
 }
