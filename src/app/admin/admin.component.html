@@ -1,5 +1,5 @@
 <div class="popup-create popup-container" *ngIf="isCreating">
-    <form method="post" class="form">
+    <form method="post" class="form" (ngSubmit)="createNewFlight()">
         
         <input class="input" type="text" name="origin" [(ngModel)]="origin" placeholder="Origin">
 
@@ -8,13 +8,13 @@
         <input class="input" type="text" name="flight-number" [(ngModel)]="flightNumber" placeholder="Flight Number">
 
         <label>Departure</label>
-        <input class="input" type="date">
+        <input class="input" type="datetime-local" name="departure" [(ngModel)]="departure">
 
         <label>Arrival</label>
-        <input class="input" type="date">
+        <input class="input" type="datetime-local" name="arrival" [(ngModel)]="arrival">
 
         <span>Nonstop</span>
-        <input type="checkbox" name="nonstop">
+        <input type="checkbox" (click)="toggleNonstop()" name="nonstop">
 
         <div class="controls">
             <input class="btn" type="submit" value="Create">
@@ -37,13 +37,13 @@
                 <input class="input" [value]="flightNumber" type="text" name="flight-number" [(ngModel)]="flightNumber" placeholder="Flight Number">
         
                 <label>Departure</label>
-                <input class="input" [value]="departure" type="date">
+                <input class="input" [value]="departure" type="datetime-local">
         
                 <label>Arrival</label>
-                <input class="input" [value]="arrival" type="date">
+                <input class="input" [value]="arrival" type="datetime-local">
         
                 <span>Nonstop</span>
-                <input [checked]="nonstop" type="checkbox" name="nonstop">
+                <input [checked]="nonstop" type="checkbox" (click)="toggleNonstop()" name="nonstop">
                 
                 <div class="controls">
                     <input class="btn" type="submit" value="Create">

@@ -38,12 +38,12 @@ export class FlightsService {
   {
     console.log("here");
     
-    return this.httpClient.get(`http://localhost:3000/flights/query/${org}/${dest}`)
+    return this.httpClient.get(`http://localhost:3000/flights/query/${org}/${dest}`);
   }
 
-  newFlight(flight: Flight): void
+  newFlight(flight: Flight)
   {
-
+    return this.httpClient.post('http://localhost:3000/flights', flight).subscribe(data => {});
   }
 
   deleteFlight(id: number): void

@@ -24,7 +24,7 @@ export class AdminComponent implements OnInit{
   flightNumber: number;
   departure: Date;
   arrival: Date;
-  nonstop: boolean;
+  nonstop: boolean = false;
 
   constructor(private flightService: FlightsService) {}
 
@@ -47,6 +47,26 @@ export class AdminComponent implements OnInit{
   handleNew(): void
   {
     this.isCreating = true;
+  }
+
+  createNewFlight()
+  {
+    const flight: Flight = {
+      origin: this.origin, 
+      destination: this.destination,
+      flightNumber: this.flightNumber,
+      departure: new Date(this.departure),
+      arrival: new Date(this.arrival),
+      nonstop: this.nonstop
+    }
+    this.flightService.newFlight(flight)
+    console.log(this.arrival);
+    
+  }
+
+  toggleNonstop(): void
+  {
+    this.nonstop = !this.nonstop;
   }
 
 }
