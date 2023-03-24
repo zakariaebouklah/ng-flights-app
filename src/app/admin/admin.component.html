@@ -1,1 +1,120 @@
-<p>admin works!</p>
+<div class="popup-create popup-container" *ngIf="isCreating">
+    <form method="post" class="form">
+        
+        <input class="input" type="text" name="origin" [(ngModel)]="origin" placeholder="Origin">
+
+        <input class="input" type="text" name="destination" [(ngModel)]="destination" placeholder="Destination">
+
+        <input class="input" type="text" name="flight-number" [(ngModel)]="flightNumber" placeholder="Flight Number">
+
+        <label>Departure</label>
+        <input class="input" type="date">
+
+        <label>Arrival</label>
+        <input class="input" type="date">
+
+        <span>Nonstop</span>
+        <input type="checkbox" name="nonstop">
+
+        <div class="controls">
+            <input class="btn" type="submit" value="Create">
+            <button (click)="isCreating = false">EXIT</button>
+        </div>
+        
+    </form>
+    
+</div>
+<div class="popup-container" *ngIf="isEditing">
+    <div class="popup-edit">
+        <div>Editing</div>
+        <div>
+            <form method="post" class="form">
+        
+                <input class="input" [value]="origin" type="text" name="origin" [(ngModel)]="origin" placeholder="Origin">
+        
+                <input class="input" [value]="destination" type="text" name="destination" [(ngModel)]="destination" placeholder="Destination">
+        
+                <input class="input" [value]="flightNumber" type="text" name="flight-number" [(ngModel)]="flightNumber" placeholder="Flight Number">
+        
+                <label>Departure</label>
+                <input class="input" [value]="departure" type="date">
+        
+                <label>Arrival</label>
+                <input class="input" [value]="arrival" type="date">
+        
+                <span>Nonstop</span>
+                <input [checked]="nonstop" type="checkbox" name="nonstop">
+                
+                <div class="controls">
+                    <input class="btn" type="submit" value="Create">
+                    <button (click)="isEditing = false">EXIT</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+    
+</div>
+<div class="popup-container" *ngIf="isDeleting">
+    <div class="popup-delete">
+        <div class="text-white">Are you sure you want to delete this?</div>
+        <div class="controls">
+            <button type="submit" class="btn">Confirm</button>
+            <button class="btn" (click)="isDeleting = false">Cancel</button>
+        </div>
+    </div>
+</div>
+<div>
+    <div>
+        <div class="head">
+            <div>
+                #FlightNumber
+            </div>
+            <div class="font-bold">
+                Origin
+            </div>
+            <div class="font-bold">
+                Destination
+            </div>
+            <div>
+                Departure
+            </div>
+            <div>
+                Arrival
+            </div>
+            <div>
+                Type
+            </div>
+            <button class="new" (click)="handleNew()">
+                New flight
+            </button>
+        </div>
+    </div>
+    <div *ngFor="let f of flights" class="flex flex-row items-center justify-between m-auto">
+        <div class="flight w-full">
+            <div>
+                #{{f.flightNumber}}
+            </div>
+            <div class="font-bold">
+                {{f.origin}}
+            </div>
+            <div class="font-bold">
+                {{f.destination}}
+            </div>
+            <div>
+                {{f.departure | date:'full'}}
+            </div>
+            <div>
+                {{f.arrival | date:'full'}}
+            </div>
+            <div [ngClass]="{'nonstop' : f.nonstop, 'no-nonstop': f.nonstop === false}">
+                {{f.nonstop ? 'Nonstop' : 'Direct'}}
+            </div>
+        </div>
+
+        <div class="controls">
+            <button [ngClass]="'delete'" (click)="handleDelete()">Delete</button>
+            <button [ngClass]="'edit'" (click)="handleEdit()">Edit</button>
+        </div>
+    </div>
+</div>
