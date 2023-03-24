@@ -28,6 +28,10 @@
         @apply flex flex-row bg-[#a7b7d6] shadow-3xl p-7 justify-between mx-7 my-12 hover:-translate-y-[5px] hover:effect rounded-md items-center;
     }
 
+    .flight-err {
+        @apply flex flex-row bg-[#f08675] shadow-3xl p-7 justify-between mx-7 my-12 hover:-translate-y-[5px] hover:effect rounded-md items-center;
+    }
+
     .nonstop {
         @apply text-white bg-blue-500 px-5 py-2.5 rounded-md;
     }
@@ -45,6 +49,6 @@
     }
 
     .search {
-        @apply flex flex-row items-center justify-center  justify-around;
+        @apply flex flex-row items-center justify-center justify-around;
     }
 }

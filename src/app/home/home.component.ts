@@ -12,6 +12,7 @@ export class HomeComponent implements OnInit{
   flights: Flight[] = []; 
 
   isClicked: boolean = false;
+  cond: boolean;
 
   origin: string;
   destination: string;
@@ -30,13 +31,22 @@ export class HomeComponent implements OnInit{
     });
   }
 
-  searchByOrgingAndDestination()
+  searchByOrigingAndDestination(): void
   {
     this.flightsService.getFlightByOrgAndDest(this.origin, this.destination).subscribe(data => {
-      console.log(data);
-      
+      console.log(typeof data);
+      if(Object.keys(data).length === 0)
+      {
+        this.cond = true
+        return;
+      }
       this.flights = data
     })
+  }
+
+  handleChange(e: Event): void
+  {
+    this.isClicked = true;
   }
 
 }

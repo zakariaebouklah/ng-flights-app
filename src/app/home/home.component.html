@@ -1,16 +1,21 @@
 <div>
-    <form class="search" (ngSubmit)="searchByOrgingAndDestination()">
+    <form class="search" (ngSubmit)="searchByOrigingAndDestination()">
         <div class="input">
-            <input autocomplete="off" required="true" type="text" name="org" [(ngModel)]="origin">
+            <input autocomplete="off" required="true" type="text" name="org" (change)="handleChange($event)" [(ngModel)]="origin">
             <label for="name">Origin</label>
         </div>
         <div class="input">
-            <input autocomplete="off" required="true" type="text" name="dest" [(ngModel)]="destination">
+            <input autocomplete="off" required="true" type="text" name="dest" (change)="handleChange($event)" [(ngModel)]="destination">
             <label for="name">Destination</label>
         </div>
-        <button class="shadow__btn" type="submit">
-            Go
-        </button>
+        <div class="space-x-2">
+            <button type="reset" class="reset-btn">
+                Clear
+            </button>
+            <button class="shadow__btn" type="submit">
+                Go
+            </button>
+        </div>
     </form>
 </div>
 
@@ -21,6 +26,11 @@
 </div>
 
 <div>
+    <div *ngIf="cond">
+        <div class="flight-err">
+            Cannot find any flight with those resources... try again
+        </div>
+    </div>
     <div *ngFor="let f of flights" class="flight">
         <div>
             #{{f.flightNumber}}
