@@ -51,4 +51,9 @@ export class FlightsService {
 
   }
 
+  updateFlight(f: Flight): Observable<any>
+  {
+    return this.httpClient.post(`http://localhost:3000/flights/update/${f.id}`, f);
+  }
+
 }

@@ -28,7 +28,7 @@
     <div class="popup-edit">
         <div>Editing</div>
         <div>
-            <form method="post" class="form">
+            <form method="post" class="form" (ngSubmit)="updateFlight()">
         
                 <input class="input" [value]="origin" type="text" name="origin" [(ngModel)]="origin" placeholder="Origin">
         
@@ -46,7 +46,7 @@
                 <input [checked]="nonstop" type="checkbox" (click)="toggleNonstop()" name="nonstop">
                 
                 <div class="controls">
-                    <input class="btn" type="submit" value="Create">
+                    <input class="btn" type="submit" value="Update">
                     <button (click)="isEditing = false">EXIT</button>
                 </div>
 
@@ -114,7 +114,7 @@
 
         <div class="controls">
             <button [ngClass]="'delete'" (click)="handleDelete()">Delete</button>
-            <button [ngClass]="'edit'" (click)="handleEdit()">Edit</button>
+            <button [ngClass]="'edit'" (click)="handleEdit(f)">Edit</button>
         </div>
     </div>
 </div>

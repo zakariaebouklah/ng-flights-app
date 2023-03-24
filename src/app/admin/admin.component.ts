@@ -19,6 +19,7 @@ export class AdminComponent implements OnInit{
     form fields
   */
 
+  id?: number
   origin: string;
   destination: string;
   flightNumber: number;
@@ -29,9 +30,7 @@ export class AdminComponent implements OnInit{
   constructor(private flightService: FlightsService) {}
 
   ngOnInit(): void {
-    this.flightService.getFlights().subscribe((data) => {
-      this.flights = data
-    })
+    this.refresh();
   }
 
   handleDelete() : void
@@ -39,14 +38,30 @@ export class AdminComponent implements OnInit{
     this.isDeleting = true;
   }
 
-  handleEdit() : void
+  handleEdit(f: Flight) : void
   {
+    console.log(f);
+    this.id = f.id;
+    this.origin = f.origin;
+    this.destination = f.destination;
+    this.flightNumber = f.flightNumber;
+    this.departure = f.departure;
+    this.arrival = f.arrival;
+    this.nonstop = f.nonstop;
     this.isEditing = true;
   }
 
   handleNew(): void
   {
     this.isCreating = true;
+  }
+
+  refresh(): void
+  {
+    this.flightService.getFlights().subscribe((data) => {
+      this.flights = data
+      console.log(this.flights);
+    })
   }
 
   createNewFlight()
@@ -60,13 +75,33 @@ export class AdminComponent implements OnInit{
       nonstop: this.nonstop
     }
     this.flightService.newFlight(flight)
-    console.log(this.arrival);
+    console.log(flight);
     
   }
 
   toggleNonstop(): void
   {
     this.nonstop = !this.nonstop;
+  }
+
+  updateFlight()
+  {
+    const flight: Flight = {
+      id: this.id,
+      origin: this.origin, 
+      destination: this.destination,
+      flightNumber: this.flightNumber,
+      departure: new Date(this.departure),
+      arrival: new Date(this.arrival),
+      nonstop: this.nonstop
+    }
+    this.flightService.updateFlight(flight).subscribe(data => {
+      if(data && data['affected'])
+      {
+        this.refresh()
+      }
+      this.isEditing = false;
+    })
   }
 
 }
