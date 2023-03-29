@@ -33,8 +33,15 @@ export class AdminComponent implements OnInit{
     this.refresh();
   }
 
-  handleDelete() : void
+  handleDelete(f: Flight) : void
   {
+    this.id = f.id
+    this.origin = f.origin;
+    this.destination = f.destination;
+    this.flightNumber = f.flightNumber;
+    this.departure = f.departure;
+    this.arrival = f.arrival;
+    this.nonstop = f.nonstop;
     this.isDeleting = true;
   }
 
@@ -101,6 +108,26 @@ export class AdminComponent implements OnInit{
         this.refresh()
       }
       this.isEditing = false;
+    })
+  }
+
+  deleteConfirmed()
+  {
+    const flight: Flight = {
+      id: this.id,
+      origin: this.origin, 
+      destination: this.destination,
+      flightNumber: this.flightNumber,
+      departure: new Date(this.departure),
+      arrival: new Date(this.arrival),
+      nonstop: this.nonstop
+    }
+    this.flightService.deleteFlight(flight.id).subscribe(data => {
+      if(data && data['affected'])
+      {
+        this.refresh();
+      }
+      this.isDeleting = false;
     })
   }
 

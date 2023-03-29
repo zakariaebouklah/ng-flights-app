@@ -46,9 +46,9 @@ export class FlightsService {
     return this.httpClient.post('http://localhost:3000/flights', flight).subscribe(data => {});
   }
 
-  deleteFlight(id: number): void
+  deleteFlight(id?: number): Observable<any>
   {
-
+    return this.httpClient.post(`http://localhost:3000/flights/delete/${id}`, null)
   }
 
   updateFlight(f: Flight): Observable<any>
